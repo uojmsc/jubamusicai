@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Search Results for "{{ query }}"</h1>
+    
+    {% if results %}
+        {% for genre, info in results.items() %}
+            <div class="result-card" style="text-align: left; margin-bottom: 2rem;">
+                <h2 style="color: #ffd700; text-transform: capitalize;">{{ genre }}</h2>
+                <p><strong>Origin:</strong> {{ info.origin }}</p>
+                <p><strong>Culture:</strong> {{ info.culture }}</p>
+                <hr style="border: 0; border-top: 1px solid rgba(255,215,0,0.2); margin: 1rem 0;">
+                <p>{{ info.description }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="result-card">
+            <p>No detailed information found for "{{ query }}". Try searching for 'Blues', 'Classical', or 'Hiphop'.</p>
+            <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

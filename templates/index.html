@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Classify - Music Genre Classifier{% endblock %}
+
+{% block content %}
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p style="font-weight: bold; color: #ffd700;">Extracting Audio Features...</p>
+    </div>
+
+    <h1>Analyze Audio</h1>
+    <p>Upload an audio file to predict its genre.</p>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data" id="upload-form">
+        <div class="upload-area">
+            <input type="file" name="audio_file" accept=".wav,.mp3,.ogg,.m4a" required>
+            <button type="submit" class="btn">Analyze Audio</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('upload-form').onsubmit = function() {
+        document.getElementById('loading-overlay').style.display = 'flex';
+    };
+</script>
+{% endblock %}

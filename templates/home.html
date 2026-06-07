@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Home - JubaMusic AI{% endblock %}
+
+{% block content %}
+<div style="text-align: center;">
+    <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">JubaMusic AI</h1>
+    <p style="font-size: 1.4rem; color: #ccc; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Our advanced AI analyzes the rhythmic patterns and acoustic textures of music to identify genres with state-of-the-art precision.
+    </p>
+    <div style="display: flex; justify-content: center; gap: 20px;">
+        <a href="{{ url_for('classify') }}" class="btn" style="padding: 15px 40px; font-size: 1.1rem;">Analyze Track</a>
+        <a href="{{ url_for('about') }}" class="btn" style="background: rgba(255,255,255,0.1); color: white; padding: 15px 40px; font-size: 1.1rem;">Learn More</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Result - Music Genre Classifier{% endblock %}
+
+{% block content %}
+        <h1>Analysis Complete</h1>
+        <p>File: <strong>{{ filename }}</strong></p>
+        
+        <div class="result-card">
+            <h2>Predicted Genre: <span style="color: #ffd700;">{{ predicted_genre }}</span></h2>
+            <p style="margin-bottom: 5px;">Confidence: <strong>{{ confidence }}%</strong></p>
+            <div class="confidence-bar-bg">
+                <div class="confidence-bar-fill" style="width: {{ confidence }}%;"></div>
+            </div>
+        </div>
+
+        <div class="audio-section">
+            <div class="audio-player-container">
+                <p style="margin: 0; font-size: 0.9rem;">Click play to confirm track identity:</p>
+                <audio controls preload="metadata" src="{{ audio_url }}"></audio>
+            </div>
+        </div>
+
+        <div class="top-results">
+            <h3>Top 3 Probabilities:</h3>
+            <ul>
+                {% for genre, prob in top_3 %}
+                <li>{{ genre }}: {{ (prob * 100)|round(2) }}%</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; gap: 10px;">
+            <a href="{{ url_for('classify') }}" class="btn" style="background: rgba(255,255,255,0.1); color: white;">Try Another</a>
+        </div>
+{% endblock %}

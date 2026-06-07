@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}About - Music Genre Classifier{% endblock %}
+
+{% block content %}
+    <h1>About the Project</h1>
+    <p>This application uses a Convolutional Neural Network (CNN) to analyze audio features like MFCCs, Spectral Contrast, and Chroma to predict music genres.</p>
+    <p>Developed as part of the Speech Processing module (MSc AI).</p>
+    <div style="margin-top: 2rem;">
+        <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+    </div>
+{% endblock %}
